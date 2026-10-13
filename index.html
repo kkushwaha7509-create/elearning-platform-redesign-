@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learnly — E-Learning Platform Redesign</title>
+<style>
+:root{--ink:#17223b;--muted:#78839b;--purple:#6759e8;--purple2:#eeeaff;--bg:#f6f7fb;--card:#fff;--line:#e8eaf2;--green:#28a879;--orange:#f4a340}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+button,input{font:inherit}button{cursor:pointer;border:0}.app{display:grid;grid-template-columns:245px 1fr;min-height:100vh}
+.sidebar{background:#fff;border-right:1px solid var(--line);padding:27px 18px;display:flex;flex-direction:column;gap:28px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.7px;padding:0 12px}.brandmark{background:var(--purple);color:#fff;border-radius:12px;width:35px;height:35px;display:grid;place-items:center;font-size:18px}
+.nav-label{font-size:10px;letter-spacing:1.5px;color:#a0a7b8;font-weight:800;padding:0 14px;margin-bottom:9px}.nav{display:grid;gap:6px}.nav button{background:transparent;color:#7a849b;text-align:left;padding:12px 14px;border-radius:12px;display:flex;align-items:center;gap:12px;font-weight:650}.nav button.active,.nav button:hover{background:var(--purple2);color:var(--purple)}.nav .ico{width:19px;text-align:center;font-size:17px}.side-bottom{margin-top:auto;background:#f7f5ff;padding:17px;border-radius:16px}.side-bottom strong{font-size:13px}.side-bottom p{font-size:12px;color:var(--muted);line-height:1.5}.small-btn{background:var(--purple);color:#fff;border-radius:10px;padding:10px 12px;font-size:12px;font-weight:700;width:100%}
+main{padding:28px 34px 40px;max-width:1500px;width:100%;margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:28px}.greeting h1{font-size:25px;margin:0 0 6px;letter-spacing:-.7px}.greeting p{margin:0;color:var(--muted);font-size:13px}.top-actions{display:flex;align-items:center;gap:12px}.search{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;width:220px;outline:none}.avatar{width:42px;height:42px;border-radius:50%;background:#ffe2c4;color:#80502c;display:grid;place-items:center;font-weight:800}.mobile-menu{display:none}
+.hero{background:linear-gradient(110deg,#6556e8,#8274f5);border-radius:22px;color:white;padding:27px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px;overflow:hidden;position:relative;margin-bottom:25px}.hero:after{content:"";position:absolute;width:220px;height:220px;border:35px solid #ffffff18;border-radius:50%;right:17%;top:-95px}.hero-copy{position:relative;z-index:1;max-width:510px}.eyebrow{font-size:11px;letter-spacing:1.6px;font-weight:800;opacity:.78}.hero h2{font-size:25px;line-height:1.2;margin:10px 0}.hero p{font-size:13px;line-height:1.6;opacity:.86;max-width:420px}.white-btn{background:#fff;color:var(--purple);font-weight:800;border-radius:11px;padding:12px 17px;margin-top:6px}.hero-art{position:relative;z-index:1;min-width:190px;text-align:center;font-size:78px;filter:drop-shadow(0 12px 15px #3526a355)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:29px}.stat{background:#fff;border:1px solid var(--line);border-radius:17px;padding:18px}.stat-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px;font-weight:650}.stat-icon{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--purple2);color:var(--purple);font-size:17px}.stat h3{font-size:25px;margin:13px 0 5px;letter-spacing:-.7px}.stat small{color:var(--green);font-size:11px;font-weight:700}.section-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 15px}.section-head h2{font-size:18px;margin:0;letter-spacing:-.4px}.text-btn{background:none;color:var(--purple);font-size:12px;font-weight:800}
+.content-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(260px,1fr);gap:22px}.course-list{display:grid;gap:13px}.course{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;display:grid;grid-template-columns:100px 1fr;gap:15px;align-items:center}.course-thumb{height:95px;border-radius:13px;display:grid;place-items:center;font-size:36px}.thumb-blue{background:#e6f1ff}.thumb-pink{background:#ffe8f0}.thumb-yellow{background:#fff0d8}.course-meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap;font-size:10px;color:var(--muted);font-weight:700}.tag{padding:5px 8px;background:#f0edff;color:var(--purple);border-radius:6px}.course h3{font-size:14px;margin:8px 0 7px}.course-foot{display:flex;align-items:center;justify-content:space-between;gap:10px}.progress-label{font-size:10px;color:var(--muted)}.progress-label b{color:var(--ink)}.bar{height:6px;background:#eceef5;border-radius:20px;margin-top:7px;overflow:hidden}.bar span{display:block;height:100%;background:var(--purple);border-radius:20px}.continue{background:var(--purple);color:#fff;padding:9px 12px;border-radius:9px;font-size:11px;font-weight:800;white-space:nowrap}
+.right-col{display:grid;gap:20px;align-content:start}.panel{background:#fff;border:1px solid var(--line);border-radius:17px;padding:20px}.panel h2{font-size:16px;margin:0 0 17px}.week{display:flex;justify-content:space-between;gap:7px}.day{flex:1;text-align:center;font-size:10px;color:var(--muted)}.day span{display:grid;place-items:center;margin:9px auto 0;width:32px;height:32px;border-radius:10px;font-size:12px;color:var(--ink);font-weight:700}.day.selected span{background:var(--purple);color:#fff}.day.done span{background:#e4f7ef;color:var(--green)}.event{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #f0f1f6}.event:last-child{border:0;padding-bottom:0}.event-time{font-size:10px;color:var(--muted);width:54px;padding-top:3px}.event-dot{width:9px;height:9px;border-radius:50%;background:var(--purple);margin-top:4px;flex-shrink:0}.event strong{font-size:12px;display:block;margin-bottom:4px}.event small{font-size:10px;color:var(--muted)}.goal{display:flex;align-items:center;gap:14px}.ring{width:70px;height:70px;border-radius:50%;background:conic-gradient(var(--green) 0 68%,#e8f5ef 68% 100%);display:grid;place-items:center;flex-shrink:0}.ring:before{content:"68%";display:grid;place-items:center;width:54px;height:54px;border-radius:50%;background:white;font-size:14px;font-weight:800}.goal strong{font-size:13px}.goal p{font-size:11px;line-height:1.5;color:var(--muted);margin:6px 0 0}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#202943;color:#fff;padding:12px 18px;border-radius:12px;font-size:13px;box-shadow:0 10px 30px #17223b30;display:none;z-index:5}.toast.show{display:block}.empty{display:none;padding:25px;text-align:center;color:var(--muted);font-size:13px;background:#fff;border:1px solid var(--line);border-radius:14px}
+@media(max-width:1000px){.app{grid-template-columns:205px 1fr}.sidebar{padding:22px 12px}main{padding:24px 22px}.stats{grid-template-columns:repeat(2,1fr)}.content-grid{grid-template-columns:1fr}.right-col{grid-template-columns:1fr 1fr}.search{width:170px}}
+@media(max-width:680px){.app{display:block}.sidebar{display:none}.mobile-menu{display:block;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}.topbar{align-items:flex-start}.top-actions{gap:7px}.search{width:135px;padding:10px;font-size:12px}.greeting h1{font-size:20px}.greeting p{font-size:11px}.hero{padding:22px}.hero h2{font-size:22px}.hero-art{display:none}.stats{gap:10px}.stat{padding:14px}.stat h3{font-size:22px}.right-col{grid-template-columns:1fr}.course{grid-template-columns:78px 1fr;padding:10px;gap:11px}.course-thumb{height:82px;font-size:29px}.course-foot{align-items:flex-start;flex-direction:column}.continue{width:100%}main{padding:18px 14px 30px}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="brand"><div class="brandmark">✦</div>learnly<span style="color:var(--purple)">.</span></div>
+  <div><div class="nav-label">LEARNING SPACE</div><nav class="nav">
+    <button class="active" data-view="dashboard"><span class="ico">⌂</span> Dashboard</button>
+    <button data-view="courses"><span class="ico">▤</span> My Courses</button>
+    <button data-view="schedule"><span class="ico">▦</span> Schedule</button>
+    <button data-view="achievements"><span class="ico">♧</span> Achievements</button>
+  </nav></div>
+  <div><div class="nav-label">PERSONAL</div><nav class="nav">
+    <button data-view="profile"><span class="ico">◉</span> My Profile</button>
+    <button data-view="settings"><span class="ico">⚙</span> Settings</button>
+  </nav></div>
+  <div class="side-bottom"><strong>Keep your streak alive 🔥</strong><p>You're making progress. A little learning every day adds up.</p><button class="small-btn" id="planBtn">View learning plan</button></div>
+</aside>
+<main>
+  <header class="topbar">
+    <button class="mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+    <div class="greeting"><h1 id="welcome">Good afternoon, learner! 👋</h1><p>Ready to make today count? Let's keep learning.</p></div>
+    <div class="top-actions"><input class="search" id="search" placeholder="⌕  Search courses..." aria-label="Search courses"><div class="avatar" title="Learner profile">L</div></div>
+  </header>
+  <section class="hero">
+    <div class="hero-copy"><div class="eyebrow">YOUR LEARNING JOURNEY</div><h2>Small steps. Big progress.</h2><p>Pick up where you left off, explore something new, and build skills at your own pace.</p><button class="white-btn" id="exploreBtn">Explore courses&nbsp; →</button></div>
+    <div class="hero-art" aria-hidden="true">📚</div>
+  </section>
+  <section class="stats">
+    <article class="stat"><div class="stat-top">Courses in progress <span class="stat-icon">▤</span></div><h3 id="statCourses">3</h3><small>↑ Keep going</small></article>
+    <article class="stat"><div class="stat-top">Learning hours <span class="stat-icon">◷</span></div><h3>12.5 hrs</h3><small>↑ 2.5 hrs this week</small></article>
+    <article class="stat"><div class="stat-top">Lessons completed <span class="stat-icon">✓</span></div><h3>24</h3><small>↑ You're on track</small></article>
+    <article class="stat"><div class="stat-top">Current streak <span class="stat-icon">♨</span></div><h3>5 days</h3><small>↑ Great consistency</small></article>
+  </section>
+  <div class="content-grid">
+    <section>
+      <div class="section-head"><h2 id="courseHeading">Continue learning</h2><button class="text-btn" id="allCourses">View all courses →</button></div>
+      <div class="course-list" id="courseList">
+        <article class="course" data-title="UI UX Design Fundamentals"><div class="course-thumb thumb-blue">🎨</div><div><div class="course-meta"><span class="tag">DESIGN</span><span>8 lessons</span><span>•</span><span>2h 40m</span></div><h3>UI/UX Design Fundamentals</h3><div class="course-foot"><div style="flex:1;width:100%"><div class="progress-label"><b>65%</b> completed</div><div class="bar"><span style="width:65%"></span></div></div><button class="continue" data-course="UI/UX Design Fundamentals">Continue →</button></div></div></article>
+        <article class="course" data-title="Digital Marketing Essentials"><div class="course-thumb thumb-pink">📣</div><div><div class="course-meta"><span class="tag">MARKETING</span><span>12 lessons</span><span>•</span><span>4h 10m</span></div><h3>Digital Marketing Essentials</h3><div class="course-foot"><div style="flex:1;width:100%"><div class="progress-label"><b>40%</b> completed</div><div class="bar"><span style="width:40%"></span></div></div><button class="continue" data-course="Digital Marketing Essentials">Continue →</button></div></div></article>
+        <article class="course" data-title="Business Communication"><div class="course-thumb thumb-yellow">💬</div><div><div class="course-meta"><span class="tag">BUSINESS</span><span>6 lessons</span><span>•</span><span>1h 50m</span></div><h3>Business Communication</h3><div class="course-foot"><div style="flex:1;width:100%"><div class="progress-label"><b>20%</b> completed</div><div class="bar"><span style="width:20%"></span></div></div><button class="continue" data-course="Business Communication">Continue →</button></div></div></article>
+      </div>
+      <div class="empty" id="emptyState">No courses match your search. Try another keyword.</div>
+    </section>
+    <aside class="right-col">
+      <section class="panel"><div class="section-head"><h2>This week</h2><button class="text-btn" id="weekBtn">Today</button></div><div class="week">
+        <div class="day done">Mon<span>12</span></div><div class="day done">Tue<span>13</span></div><div class="day selected">Wed<span>14</span></div><div class="day">Thu<span>15</span></div><div class="day">Fri<span>16</span></div><div class="day">Sat<span>17</span></div><div class="day">Sun<span>18</span></div>
+      </div><div style="margin-top:20px;border-top:1px solid #f0f1f6;padding-top:7px">
+        <div class="event"><div class="event-time">10:00 AM</div><div class="event-dot"></div><div><strong>Design principles</strong><small>UI/UX Design · 30 min</small></div></div>
+        <div class="event"><div class="event-time">4:30 PM</div><div class="event-dot" style="background:var(--orange)"></div><div><strong>Marketing basics</strong><small>Digital Marketing · 25 min</small></div></div>
+      </div></section>
+      <section class="panel"><h2>Your weekly goal</h2><div class="goal"><div class="ring"></div><div><strong>3.4 of 5 hours</strong><p>You've completed 68% of your weekly learning goal. You're doing great!</p></div></div><div class="bar" style="height:8px;margin-top:17px"><span style="width:68%;background:var(--green)"></span></div></section>
+    </aside>
+  </div>
+</main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const toastEl=document.getElementById('toast');let toastTimer;
+function toast(message){toastEl.textContent=message;toastEl.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toastEl.classList.remove('show'),2600)}
+const search=document.getElementById('search'), courses=[...document.querySelectorAll('.course')], empty=document.getElementById('emptyState');
+function filterCourses(){const q=search.value.toLowerCase().trim();let visible=0;courses.forEach(c=>{const show=c.dataset.title.toLowerCase().includes(q);c.style.display=show?'grid':'none';if(show)visible++});empty.style.display=visible?'none':'block';document.getElementById('statCourses').textContent=visible}
+search.addEventListener('input',filterCourses);
+document.querySelectorAll('[data-course]').forEach(btn=>btn.addEventListener('click',()=>toast('Opening lesson: '+btn.dataset.course)));
+document.getElementById('exploreBtn').addEventListener('click',()=>{search.value='';filterCourses();document.getElementById('courseHeading').textContent='Explore available courses';document.getElementById('courseList').scrollIntoView({behavior:'smooth',block:'center'});toast('Explore your current learning collection')});
+document.getElementById('allCourses').addEventListener('click',()=>{search.value='';filterCourses();document.getElementById('courseHeading').textContent='All courses';toast('Showing all available courses')});
+document.getElementById('planBtn').addEventListener('click',()=>toast('Learning plan: aim for 1 hour a day, 5 days a week.'));
+document.getElementById('weekBtn').addEventListener('click',()=>toast('You are viewing your weekly learning schedule.'));
+document.getElementById('menuBtn').addEventListener('click',()=>toast('On mobile, use the dashboard controls to explore your learning space.'));
+document.querySelectorAll('.nav button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const view=btn.dataset.view;const labels={dashboard:'Dashboard',courses:'My Courses',schedule:'Schedule',achievements:'Achievements',profile:'My Profile',settings:'Settings'};if(view==='courses'){document.getElementById('courseHeading').textContent='My Courses';document.getElementById('courseList').scrollIntoView({behavior:'smooth',block:'center'})}else if(view==='schedule'){document.querySelector('.panel').scrollIntoView({behavior:'smooth',block:'center'})}else if(view!=='dashboard'){toast(labels[view]+' section selected — demo preview')}else{document.getElementById('welcome').scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('courseHeading').textContent='Continue learning'}}));
+(function(){const h=new Date().getHours();document.getElementById('welcome').textContent=(h<12?'Good morning':h<17?'Good afternoon':'Good evening')+', learner! 👋'})();
+</script>
+</body>
+</html>
